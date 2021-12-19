@@ -1,0 +1,66 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/y18.gif" alt="" width="24" height="24" class="d-inline-block align-text-top">
+      Hacker News
+    </a>
+  </div>
+</nav>
+
+<div class="content container mb-3" role="main">
+  <div id="articles" class="row">
+    
+  </div>
+
+  <a class="btn btn-secondary ml-auto" onclick="loadMore()">Load more</a>
+</div>
+
+<script>
+  (function() {
+    var articles = <%= raw @articles.to_json() %>;
+    loadArticles(articles);
+    localStorage.setItem('articles', JSON.stringify(articles));
+    localStorage.setItem('page_number', 1);
+  })();
+
+  function loadMore() {
+    articles = JSON.parse(localStorage.getItem('articles'));
+    var pageNumber = localStorage.getItem('page_number');
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        var newArticles = response['articles'];
+        console.log(newArticles.length);
+        if (newArticles.length > 0) {
+          localStorage.setItem('page_number', Number.parseInt(pageNumber) + 1);
+          articles = articles.concat(newArticles);
+          loadArticles(articles);
+          localStorage.setItem('articles', JSON.stringify(articles));
+        }
+      }
+    };
+    xhttp.open("GET", `/articles/load-more?page=${Number.parseInt(pageNumber) + 1}`);
+    xhttp.send();
+  }
+
+  function addArticle(article) {
+    var articleEle = document.createElement('div');
+    articleEle.classList.add('col-lg-3');
+    articleEle.innerHTML = `
+      <div id="${article['id']}" class="article card my-3">
+        <div class="card-body">
+          <h6 class="card-title text-bold">${article['title']}</h6>
+          <p class="text-muted small">${article['subtitle']}</p>
+          <a href="${article['url']}" target="_blank" class="btn btn-primary ml-auto">Read more</a>
+        </div>
+      </div>`;
+    document.getElementById('articles').appendChild(articleEle);
+  }
+
+  function loadArticles(articles) {
+    document.getElementById('articles').innerHTML = '';
+    articles.forEach(article => addArticle(article));
+  }
+</script>

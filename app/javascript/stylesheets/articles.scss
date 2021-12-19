@@ -1,0 +1,23 @@
+.article {
+  min-height: 200px;
+
+  .card-title {
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .image {
+    height: 200px;
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.spinner {
+  height: 100vh;
+  .spinner-border {
+    margin: auto; width: 5rem; height: 5rem;
+  }
+}
