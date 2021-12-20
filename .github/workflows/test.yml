@@ -51,6 +51,7 @@ jobs:
         PGPASSWORD: postgres
         RAILS_ENV: test
         GRAPHQL_URL: https://iwa-test.herokuapp.com/graphql
+        REMOTE_HOST_URL: https://news.ycombinator.com/best
       run: |
         bundle exec rake test
         # bundle exec rake test:system
