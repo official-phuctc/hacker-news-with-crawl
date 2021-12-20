@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "graphlient", "~> 0.5.0"
 gem "dotenv-rails", "~> 2.7"
 gem "ruby-readability", :require => 'readability'
+
+gem "rails-controller-testing", "~> 1.0"
