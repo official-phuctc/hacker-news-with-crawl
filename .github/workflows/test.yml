@@ -53,6 +53,7 @@ jobs:
         GRAPHQL_URL: https://iwa-test.herokuapp.com/graphql
         REMOTE_HOST_URL: https://news.ycombinator.com/best
       run: |
+        bundle exec rails webpacker:install
         bundle exec rails webpacker:compile
         bundle exec rake test
         # bundle exec rake test:system
