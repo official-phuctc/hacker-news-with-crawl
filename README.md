@@ -1,24 +1,41 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository create backend server to load all data from graphql and response JSON data
 
-Things you may want to cover:
+# SET UP AND RUN
 
-* Ruby version
+## On development
+## Install packages
+```bundle install```
 
-* System dependencies
+## Config Project
 
-* Configuration
+### Create environment file
+```cp .env.example .env```
 
-* Database creation
+### Edit .env file with your config
 
-* Database initialization
+### Migrate and seed db
+```rails db:migrate & rails db:seed```
 
-* How to run the test suite
+### Run server
+```rails s```
 
-* Services (job queues, cache servers, search engines, etc.)
+Go to [localhost:3000](localhost:3000)
 
-* Deployment instructions
+## On production (Heroku)
+### Setup Heroku server
+[https://devcenter.heroku.com/articles/getting-started-with-rails6](https://devcenter.heroku.com/articles/getting-started-with-rails6)
 
-* ...
+### Config environment
+Go to `Heroku Enviroment`(Heroku dashboard -> Settings -> Config Vars) and copy environments from .env file
+
+### Upload code to heroku
+#### Solution 1: Upload code to heroku server
+[https://devcenter.heroku.com/articles/getting-started-with-rails6](https://devcenter.heroku.com/articles/getting-started-with-rails6)
+
+#### Solution 2: Get code from github (CD)
+[https://devcenter.heroku.com/articles/github-integration](https://devcenter.heroku.com/articles/github-integration)
+
+# Demo
+[https://hacker-news-rails-with-crawl.herokuapp.com/](https://hacker-news-rails-with-crawl.herokuapp.com/)
